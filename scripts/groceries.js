@@ -1,124 +1,184 @@
-	
 // Array of products, each product is an object with different fieldset
-// A set of ingredients should be added to products		 
+// A set of ingredients should be added to products
 
-var products = [
+var productCategories = [
 	{
-		name: "brocoli",
-		vegetarian: true,
-		glutenFree: true,
-		organic: true,
-		price: 1.99
+		name: 'Fruits and Vegetables',
+		products: [
+			{
+				name: 'Broccoli',
+				vegetarian: true,
+				glutenFree: true,
+				organic: true,
+				price: 1.99,
+			},
+			{
+				name: 'Tomato',
+				vegetarian: true,
+				glutenFree: true,
+				organic: false,
+				price: 2.5,
+			},
+			{
+				name: 'Apple',
+				vegetarian: true,
+				glutenFree: true,
+				organic: false,
+				price: 1.25,
+			},
+		],
 	},
 	{
-		name: "bread",
-		vegetarian: true,
-		glutenFree: false,
-		organic: false,
-		price: 2.35
+		name: 'Bakery',
+		products: [
+			{
+				name: 'Bread',
+				vegetarian: true,
+				glutenFree: false,
+				organic: false,
+				price: 2.35,
+			},
+		],
 	},
 	{
-		name: "salmon",
-		vegetarian: false,
-		glutenFree: true,
-		organic: true,
-		price: 10.00
+		name: 'Meat & Seafood',
+		products: [
+			{
+				name: 'Salmon',
+				vegetarian: false,
+				glutenFree: true,
+				organic: true,
+				price: 10.0,
+			},
+			{
+				name: 'Steak',
+				vegetarian: false,
+				glutenFree: true,
+				organic: false,
+				price: 15.0,
+			},
+			{
+				name: 'Hotdogs',
+				vegetarian: false,
+				glutenFree: true,
+				organic: false,
+				price: 7.0,
+			},
+		],
 	},
 	{
-		name: "steak",
-		vegetarian: false,
-		glutenFree: true,
-		organic: false,
-		price: 15.00
+		name: 'Dairy',
+		products: [
+			{
+				name: 'Butter',
+				vegetarian: false,
+				glutenFree: true,
+				organic: false,
+				price: 4.5,
+			},
+			{
+				name: 'Milk',
+				vegetarian: true,
+				glutenFree: true,
+				organic: true,
+				price: 5.0,
+			},
+		],
 	},
 	{
-		name: "soda",
-		vegetarian: true,
-		glutenFree: true,
-		organic: false,
-		price: 1.00
+		name: 'Snacks',
+		products: [
+			{
+				name: 'Soda',
+				vegetarian: true,
+				glutenFree: true,
+				organic: false,
+				price: 1.0,
+			},
+
+			{
+				name: 'Tortilla Chips',
+				vegetarian: true,
+				glutenFree: false,
+				organic: false,
+				price: 4.0,
+			},
+		],
 	},
-	{
-		name: "rice",
-		vegetarian: true,
-		glutenFree: false,
-		organic: false,
-		price: 1.50
-	},
-	{
-		name: "milk",
-		vegetarian:true,
-		glutenFree:true,
-		organic: true,
-		price:5.00
-	},
-	{
-		name:"tomato",
-		vegetarian:true,
-		glutenFree:true,
-		organic:false,
-		price:2.50
-	},
-	{
-		name:"frozen hotdogs",
-		vegetarian:false,
-		glutenFree:true,
-		organic:false,
-		price:7.00
-	},
-	{
-		name:"corn tortillas",
-		vegetarian:true,
-		glutenFree:false,
-		organic: true,
-		price:4.00
-	}
-	
-];
+]
 
 var restrictions = {
 	vegetarian: false,
 	glutenFree: false,
-	organic: false
+	organic: false,
 }
-
 
 // Using the restrictions, make a reduced list of products
 // prices should be included in this list, as well as a sort based on price
 
 function filterProducts() {
-
-	var avail_products = [...this.products];
-
-	// If any of the restrictions have been applied, we filter them out, otherwise we can keep the list as is
-	if(restrictions.vegetarian || restrictions.glutenFree || restrictions.organic) {
-		avail_products = avail_products.filter(function(prod) {
-			return (!this.restrictions.vegetarian ? true : prod.vegetarian == this.restrictions.vegetarian) &&
-				   (!this.restrictions.glutenFree ? true : prod.glutenFree == this.restrictions.glutenFree) &&
-				   (!this.restrictions.organic ? true : prod.organic == this.restrictions.organic)
-		});
-	}
-
-	// Sort by price
-	avail_products.sort(function(a,b) {
-		if (a.price < b.price) {
-			return -1;
+	var avail_products = [...this.productCategories]
+	// Go through each product category to filter out and sort them by price
+	debugger;
+	avail_products.forEach((p) => {
+		// If any of the restrictions have been applied, we filter them out
+		if (
+			restrictions.vegetarian ||
+			restrictions.glutenFree ||
+			restrictions.organic
+		) {
+			p = p.products.filter(function (prod) {
+				return (
+					(!this.restrictions.vegetarian
+						? true
+						: prod.vegetarian == this.restrictions.vegetarian) &&
+					(!this.restrictions.glutenFree
+						? true
+						: prod.glutenFree == this.restrictions.glutenFree) &&
+					(!this.restrictions.organic
+						? true
+						: prod.organic == this.restrictions.organic)
+				)
+			})
 		}
-		if (a.price > b.price) {
-			return 1;
+
+		// Sort by price
+		if (p.products?.length != 0) {
+			p.products.sort(function (a, b) {
+				if (a.price < b.price) {
+					return -1
+				}
+				if (a.price > b.price) {
+					return 1
+				}
+				return 0
+			})
 		}
-		return 0;
-	});
-	return avail_products;
+	})
+
+	return avail_products
 }
 
 // Calculate the total price of items, with received parameter being a list of products
 function getTotalPrice(chosenProducts) {
-	totalPrice = 0;
-	for (let i=0; i<products.length; i+=1) {
-		if (chosenProducts.indexOf(products[i].name) > -1){
-			totalPrice += products[i].price;
+	totalPrice = 0
+	for (let i = 0; i < products.length; i += 1) {
+		if (chosenProducts.indexOf(products[i].name) > -1) {
+			totalPrice += products[i].price
 		}
 	}
-	return totalPrice;
+	return totalPrice
+}
+
+//Setters for restrictions
+function setVegetarian(selection) {
+	this.restrictions.vegetarian = selection
+}
+
+function setGlutenFree(selection) {
+	this.restrictions.glutenFree = selection
+}
+
+function setOrganic(selection) {
+	this.restrictions.organic = selection
 }
