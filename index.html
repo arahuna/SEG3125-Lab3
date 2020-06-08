@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<! This style sheet is taken from  https://www.w3schools.com/howto/howto_js_tabs.asp>
+		<link href="styles/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<!-- Tab links, each one with an onclick event associated with it -->
+		<div class="tab">
+			<div class="header">
+				<h1>Abobo Groceries</h1>
+			</div>
+			<button class="tablinks" onclick="openInfo(event, 'Client')">
+				Client
+			</button>
+			<button class="tablinks" onclick="openInfo(event, 'Products')">
+				Products
+			</button>
+			<button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
+		</div>
+
+		<!-- Tab content -->
+		<div id="Client" class="tabcontent">
+			<h3>Client Information</h3>
+			<p>Tell us a bit about you.</p>
+			Select all that apply to you <br />
+
+			<div class="display-box">
+				<input
+					type="checkbox"
+					id="vegetarian"
+					class="restriction"
+					onclick="restrictions.vegetarian = !restrictions.vegetarian"
+				/>
+				<label> Vegetarian </label>
+				<br />
+				<input
+					type="checkbox"
+					id="glutenFree"
+					class="restriction"
+					onClick="restrictions.glutenFree = !restrictions.glutenFree"
+				/>
+				<label> Gluten-free </label>
+				<br />
+				<input
+					type="checkbox"
+					id="organic"
+					class="restriction"
+					onClick="restrictions.organic = !restrictions.organic"
+				/>
+				<label> Organic </label>
+			</div>
+		</div>
+
+		<div id="Products" class="tabcontent">
+			<h3>Your targeted products</h3>
+			<p>We preselected products based on your restrictions.</p>
+			Choose items to buy:
+			<div id="displayProduct" class="display-box"></div>
+			<button
+				id="addCart"
+				type="button"
+				class="block"
+				onclick="selectedItems()"
+			>
+				Add selected items to cart.
+			</button>
+			<div id="success"></div>
+		</div>
+
+		<div id="Cart" class="tabcontent">
+			<h3>Cart</h3>
+			<p>Here is your cart.</p>
+			<div id="displayCart"></div>
+		</div>
+
+		<p class="signature">Website designed by Ara Kirijian</p>
+
+		<script src="scripts/groceries.js"></script>
+		<script src="scripts/main.js"></script>
+	</body>
+</html>

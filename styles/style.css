@@ -1,0 +1,98 @@
+/* This style sheet is taken from  https://www.w3schools.com/howto/howto_js_tabs.asp> */
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  margin:auto;
+  min-width: 1320px;
+  flex-direction: column;
+  background-color: #f1f1f1;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  margin-top: 15px
+}
+
+label {
+  display:inline-block
+}
+
+.restriction {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin:0;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
+}
+
+/*Signature */
+.signature {
+  position:fixed;
+  margin-top:auto;
+  text-align: right;
+  right: 8px;
+  bottom: 0;
+  font-size: 10px;
+}
+
+.display-box {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin:auto;
+}
+
+body {
+  margin: auto;
+  background-color: rgb(226, 238, 224);
+  font-family:'Helvetica', 'Arial' sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+#addCart {
+  margin-bottom: 15px;
+  height: 30px;
+  width: 250px;
+  max-width: 100%;
+  border-radius: 5px;
+  border:none;
+  font-family: 'Helvetica', 'Arial' sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color:white;
+  background-color: rgb(61, 143, 45);
+}
+
+
+
