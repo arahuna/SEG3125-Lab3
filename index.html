@@ -11,20 +11,26 @@
 			<div class="header">
 				<h1>Abobo Groceries</h1>
 			</div>
-			<button class="tablinks" onclick="openInfo(event, 'Client')">
-				Client
-			</button>
-			<button class="tablinks" onclick="openInfo(event, 'Products')">
-				Products
-			</button>
-			<button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
+		</div>
+
+		<div id="Welcome" class="tabcontent">
+			<h1>Welcome to Abobo Groceries!</h3>
+			<h3>Press the button below to begin!</h4>
+			<br>
+			<div class="display-box">
+				<button id="startBtn" type="button" class="block" onclick="openInfo(event,'Client')"> Start </button>
+			</div>
 		</div>
 
 		<!-- Tab content -->
 		<div id="Client" class="tabcontent">
-			<h3>Client Information</h3>
-			<p>Tell us a bit about you.</p>
-			What are your preferences? We'll use these to curate the right products for you.<br />
+			<div class="display-box">
+				<button id="prevPage" type="button" class="block" onclick="openInfo(event, 'Products')"> Back ← </button>
+			</div>
+			<br>
+			<h3> About you </h3>
+			<h4> Before you start shopping, tell us a bit about yourself.</h4>
+			What kind of products are you looking for? We'll use this to curate the right products for you.<br />
 
 			<div class="display-box">
 				<label> Vegetarian </label>
@@ -45,26 +51,31 @@
 					<option value="false" selected="selected"> No </option>
 				</select>
 			</div>
+			<div class="display-box">
+				<button id="nextPage" type="button" class="block" onclick="openInfo(event,'Products')"> Next Page →</button>
+			</div>
 		</div>
 
 		<div id="Products" class="tabcontent">
-			<h3>Your targeted products</h3>
-			<p>We preselected products based on your restrictions.</p>
+			<div class="display-box">
+				<button id="prevPage" type="button" class="block" onclick="openInfo(event, 'Client')"> Back ← </button>
+			</div>
+			<br>
+			<h3>Products</h3>
+			<p>We've preselected products based on your preferences.</p>
 			<div id="displayProduct" class="display-box"></div>
-			<button
-				id="addCart"
-				type="button"
-				class="block"
-				onclick="selectedItems()"
-			>
-				Add selected items to cart.
-			</button>
-			<div id="success"></div>
+			<br> 
+			<div class="display-box">
+				<button id="nextPage" type="button" class="block" onclick="openInfo(event,'Cart')"> Next Page →</button>
+			</div>
 		</div>
 
 		<div id="Cart" class="tabcontent">
-			<h3>Cart</h3>
-			<p>Here is your cart.</p>
+			<div class="display-box">
+				<button id="prevPage" type="button" class="block" onclick="openInfo(event, 'Products')"> Back ← </button>
+			</div>
+			<br>
+			<h3>Your Cart</h3>
 			<div id="displayCart"></div>
 		</div>
 

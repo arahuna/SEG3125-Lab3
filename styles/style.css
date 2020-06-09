@@ -28,6 +28,23 @@
   background-color: #ccc;
 }
 
+#Welcome {
+  display: block;
+  text-align:center;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  margin:auto;
+  min-width: 1320px;
+  flex-direction: column;
+  background-color: #f1f1f1;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  margin-top: 15px
+}
+
 /* Style the tab content */
 .tabcontent {
   display: none;
@@ -45,6 +62,11 @@ label {
   display:inline-block
 }
 
+
+img {
+  float:left;
+  margin-right: 15px;
+}
 .restriction {
   width: 13px;
   height: 13px;
@@ -70,6 +92,8 @@ label {
   padding-top: 5px;
   padding-bottom: 5px;
   margin:auto;
+  min-width: fit-content;
+  min-height: fit-content;
 }
 
 body {
@@ -83,7 +107,7 @@ body {
 #addCart {
   margin-bottom: 15px;
   height: 30px;
-  width: 250px;
+  width: 100px;
   max-width: 100%;
   border-radius: 5px;
   border:none;
@@ -94,9 +118,73 @@ body {
   background-color: rgb(61, 143, 45);
 }
 
+#nextPage {
+  margin-bottom: 15px;
+  height: 30px;
+  width: 125px;
+  max-width: 100%;
+  border-radius: 5px;
+  border:none;
+  font-family: 'Helvetica', 'Arial' sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color:white;
+  background-color: rgb(61, 143, 45);
+  float: right;
+}
+
+#prevPage {
+  height: 30px;
+  width: 75px;
+  max-width: 100%;
+  border-radius: 5px;
+  border:none;
+  font-family: 'Helvetica', 'Arial' sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color:white;
+  background-color: grey;
+  float: left;
+}
+
+#startBtn {
+  height: 30px;
+  width: 75px;
+  max-width: 100%;
+  border-radius: 5px;
+  border:none;
+  font-family: 'Helvetica', 'Arial' sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color:white;
+  background-color: rgb(61, 143, 45);
+  position: relative;
+}
+
+.productDiv {
+  font-family: 'Helvetica', 'Arial' sans-serif;
+  margin-left: 195px;
+  height: 195px;
+}
+
+.productName {
+  vertical-align: top;
+  font-weight: bold;
+  font-size:1.5rem;
+  margin-top:15px;
+}
+
+.productPrice {
+  vertical-align: top;
+  font-weight: bold;
+  font-size:1rem;
+  margin-top:15px;
+  margin-bottom: 30px;
+}
+
 .accordion {
-  background-color: #eee;
-  color: #444;
+  background-color: rgb(61, 143, 45);;
+  color: white;
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -114,6 +202,10 @@ body {
   background-color: white;
   display: none;
   overflow: hidden;
+}
+
+#displayProduct {
+  margin-bottom: 15px;
 }
 
 

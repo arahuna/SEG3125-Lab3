@@ -113,6 +113,7 @@ var restrictions = {
 	organic: false,
 }
 
+
 // Using the restrictions, make a reduced list of products
 // prices should be included in this list, as well as a sort based on price
 
@@ -127,7 +128,7 @@ function filterProducts() {
 			restrictions.glutenFree ||
 			restrictions.organic
 		) {
-			p = p.products.filter(function (prod) {
+			p.products = p.products.filter(function (prod) {
 				return (
 					(!this.restrictions.vegetarian
 						? true
@@ -141,7 +142,6 @@ function filterProducts() {
 				)
 			})
 		}
-
 		// Sort by price
 		if (p.products?.length != 0) {
 			p.products.sort(function (a, b) {
@@ -159,16 +159,6 @@ function filterProducts() {
 	return avail_products
 }
 
-// Calculate the total price of items, with received parameter being a list of products
-function getTotalPrice(chosenProducts) {
-	totalPrice = 0
-	for (let i = 0; i < products.length; i += 1) {
-		if (chosenProducts.indexOf(products[i].name) > -1) {
-			totalPrice += products[i].price
-		}
-	}
-	return totalPrice
-}
 
 //Setters for restrictions
 function setVegetarian(selection) {

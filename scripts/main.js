@@ -1,3 +1,5 @@
+var cart = []
+
 // This function is called when any of the tab is clicked
 // It is adapted from https://www.w3schools.com/howto/howto_js_tabs.asp
 function openInfo(evt, tabName) {
@@ -16,6 +18,10 @@ function openInfo(evt, tabName) {
 	// If we are navigating to the products page, we want to populate the products
 	if (tabName == 'Products') {
 		populateListProductChoices('displayProduct')
+	}
+
+	if (tabName == 'Cart') {
+		selectedItems();
 	}
 
 	// Show the current tab, and add an "active" class to the button that opened the tab
@@ -44,52 +50,77 @@ function populateListProductChoices(slct2) {
 
 		// If the product category has no products, we don't want to include it
 		if (productCategory.products.length === 0) {
-			continue;
+			continue
 		}
 
+		var button = document.createElement('button')
+		button.className = 'accordion'
+		button.appendChild(document.createTextNode(productCategory.name))
+		button.addEventListener('click', function () {
+			this.classList.toggle('active')
 
-		var button = document.createElement("button");
-		button.className = "accordion";
-		button.appendChild(document.createTextNode(productCategory.name));
-		button.addEventListener("click", function() {
-			this.classList.toggle("active");
-
-			var panel = this.nextElementSibling;
-			if(panel.style.display === "block"){ 
-				panel.style.display = "none";
+			var panel = this.nextElementSibling
+			if (panel.style.display === 'block') {
+				panel.style.display = 'none'
 			} else {
-				panel.style.display = "block";
+				panel.style.display = 'block'
 			}
-		});
-		s2.appendChild(button);
+		})
+		s2.appendChild(button)
 
-
-		var div = document.createElement("div")
-		div.className = "panel";
+		var div = document.createElement('div')
+		div.className = 'panel'
 
 		productCategory.products.forEach((p) => {
+			var productDiv = document.createElement('div')
+			productDiv.className = 'productDiv'
 
 			var image = document.createElement('img')
-			image.src = "images/" + p.name + '.JPG'
+			image.src = 'images/' + p.name + '.JPG'
 			div.appendChild(image)
 
-			var checkbox = document.createElement('input')
-			checkbox.type = 'checkbox'
-			checkbox.name = 'product'
-			checkbox.value = p.name
-			div.appendChild(checkbox)
-
-			// create a label for the checkbox, and also add in HTML DOM
 			var label = document.createElement('label')
 			label.htmlFor = p.name
-			label.appendChild(
-				document.createTextNode(p.name + ' $' + p.price)
-			)
-			div.appendChild(label)
+			label.id = p.name
+			label.className = 'productName'
+			label.appendChild(document.createTextNode(p.name))
+			productDiv.appendChild(label)
+
+			productDiv.appendChild(document.createElement('br'))
+
+			var price = document.createElement('label')
+			price.htmlFor = p.price
+			price.className = 'productPrice'
+			price.appendChild(document.createTextNode('$' + p.price))
+			productDiv.appendChild(price)
+
+			productDiv.appendChild(document.createElement('br'))
+
+			var addToCart = document.createElement('button')
+			addToCart.className = 'block'
+			addToCart.type = 'button'
+			addToCart.id = 'addCart'
+			addToCart.appendChild(document.createTextNode('Add to cart'))
+			addToCart.addEventListener('click', function () {
+				if (!cart.includes(p)) {
+					cart.push(p)
+					productDiv.appendChild(document.createElement('br'))
+					var success = document.createElement('label')
+					success.appendChild(
+						document.createTextNode(
+							'Success, ' + p.name + ' has been added to your cart.'
+						)
+					)
+					productDiv.appendChild(success)
+				}
+			})
+			productDiv.appendChild(addToCart)
+
+			div.appendChild(productDiv)
 
 			div.appendChild(document.createElement('br'))
 		})
-		s2.appendChild(div);
+		s2.appendChild(div)
 	}
 }
 
@@ -98,47 +129,45 @@ function populateListProductChoices(slct2) {
 // We build a paragraph to contain the list of selected items, and the total price
 
 function selectedItems() {
-	var ele = document.getElementsByName('product')
-	var chosenProducts = []
 
 	var c = document.getElementById('displayCart')
 	c.innerHTML = ''
 
-	var d = document.getElementById('success')
-	d.innerHTML = ''
 
 	// build list of selected item
 	var para = document.createElement('P')
 	para.innerHTML = 'You selected : '
 	para.appendChild(document.createElement('br'))
-	for (i = 0; i < ele.length; i++) {
-		if (ele[i].checked) {
-			para.appendChild(document.createTextNode(ele[i].value))
-			para.appendChild(document.createElement('br'))
-			chosenProducts.push(ele[i].value)
-		}
+	for (i = 0; i < cart.length; i++) {
+		para.appendChild(document.createTextNode(cart[i].name))
+		para.appendChild(document.createElement('br'))
 	}
-
-	d.appendChild(
-		document.createTextNode('Success, your items have been added to your cart.')
-	)
 
 	// add paragraph and total price
 	c.appendChild(para)
 	c.appendChild(
-		document.createTextNode('Total Price is ' + getTotalPrice(chosenProducts))
+		document.createTextNode('Total Price is ' + getTotalPrice(cart))
 	)
 }
 
-function setRestriction(restriction) {
-	var selection = document.getElementById(restriction).value === "true" ? true : false;
-	console.log(selection);
-	if(restriction === "vegetarian"){
-		setVegetarian(selection);
-	} else if (restriction === "gluten-free"){
-		setGlutenFree(selection);
-	} else if (restriction === "organic") {
-		setOrganic(selection);
-	}
+// Calculate the total price 
+function getTotalPrice(cart) {
+	var sum = 0
+	cart.forEach(p => {
+		sum += p.price;
+	})
+	return sum
+}
 
+function setRestriction(restriction) {
+	var selection =
+		document.getElementById(restriction).value === 'true' ? true : false
+	console.log(selection)
+	if (restriction === 'vegetarian') {
+		setVegetarian(selection)
+	} else if (restriction === 'gluten-free') {
+		setGlutenFree(selection)
+	} else if (restriction === 'organic') {
+		setOrganic(selection)
+	}
 }
