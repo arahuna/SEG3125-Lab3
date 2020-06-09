@@ -120,7 +120,6 @@ var restrictions = {
 function filterProducts() {
 	var avail_products = [...this.productCategories]
 	// Go through each product category to filter out and sort them by price
-	debugger;
 	avail_products.forEach((p) => {
 		// If any of the restrictions have been applied, we filter them out
 		if (
