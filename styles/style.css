@@ -67,6 +67,7 @@ img {
   float:left;
   margin-right: 15px;
 }
+
 .restriction {
   width: 13px;
   height: 13px;
@@ -104,6 +105,7 @@ body {
   flex-direction: column;
 }
 
+/* buttons taken from here : https://codepen.io/sebj54/pen/oxluI */
 #addCart {
   margin-bottom: 15px;
   height: 30px;
@@ -182,6 +184,7 @@ body {
   margin-bottom: 30px;
 }
 
+/* Accordion and panels taken from https://www.w3schools.com/howto/howto_js_accordion.asp */
 .accordion {
   background-color: rgb(61, 143, 45);;
   color: white;
